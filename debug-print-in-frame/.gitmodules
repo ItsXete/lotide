@@ -1,0 +1,3 @@
+[submodule "lotide"]
+	path = lotide
+	url = git@github.com:ItsXete/lotide.git
