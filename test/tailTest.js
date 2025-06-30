@@ -1,14 +1,20 @@
 // test/tailTest.js
+const { assert } = require("chai");
 const tail = require("../tail");
-const assertEqual = require("../assertEqual");
 
 // Test 1
-const result = tail(["Hello", "Lighthouse", "Labs"]);
-assertEqual(result.length, 2);
-assertEqual(result[0], "Lighthouse");
-assertEqual(result[1], "Labs");
+describe("#tail", () => {
+  it('returns ["Lighthouse", "Labs"] for ["Hello", "Lighthouse", "Labs"]', () => {
+    const result = tail(["Hello", "Lighthouse", "Labs"]);
+    assert.strictEqual(result.length, 2);
+    assert.strictEqual(result[0], "Lighthouse");
+    assert.strictEqual(result[1], "Labs");
+  });
 
 // Test 2: Check the original array is not modified
-const words = ["Yo Yo", "Lighthouse", "Labs"];
-tail(words); // not capturing return
-assertEqual(words.length, 3); // should still be 3
+it("does not modify the original array", () => {
+    const words = ["Yo Yo", "Lighthouse", "Labs"];
+    tail(words); // call but ignore return value
+    assert.strictEqual(words.length, 3);
+  });
+});
